@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather Example function </title>
+</head>
+<body>
+    <input type="text" id="city">  
+    <button id="mybtn">fetch It</button>
+    <div id="info">
+
+    </div>  
+   <script>  
+        document.getElementById("mybtn").onclick = async ()=>{  
+          var city = document.getElementById("city").value;  
+          var data =  await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=0eac84d6e489b389e2ac2dfd16526dc7`);
+          var data2 = await  data.json();    
+          document.getElementById("info").innerHTML = `
+              <ul>
+              <li>City Name : ${data2.name} </li>
+              <li>Temp  in c : ${data2.main.temp}  </li>
+              <li> Description : ${data2.weather[0].description} </li>
+              </ul>
+              `
+          //console.log(data2);        
+           /*then(data => {  
+               return data.json()
+           }).then(data2 => {
+              // console.log("name"+data2.name); 
+               //console.log("temp"+data2.main.temp); 
+               //console.log("description" +data2.weather[0].description)
+              document.getElementById("info").innerHTML = `
+              <ul>
+              <li>City Name : ${data2.name} </li>
+              <li>Temp  in c : ${data2.main.temp}  </li>
+              <li> Description : ${data2.weather[0].description} </li>
+              </ul>
+              `
+
+
+           }).catch(err => {
+               console.log(err);    
+           })*/
+          
+
+        }
+
+    </script>
+    <!-- async function example -->
+    <script>
+      /* async function getsum(){
+            return 5;
+        }
+        getsum().then(data =>{
+            console.log(data); 
+        })*/
+
+     /*   async function getsum(){
+            return new Promise((res,rej) => {
+               setTimeout(() => {
+                res("ok good");  
+               }, 3000);   
+            }
+
+            )
+        }
+
+       async function display(){
+            var x = await getsum();  
+            console.log(x);  
+        }
+        display();  */
+       /* getsum().then(data =>{  
+            console.log(data); 
+        })*/
+
+
+    </script>  
+</body>
+</html>
